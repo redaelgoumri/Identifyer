@@ -1,4 +1,4 @@
-# ![Identifyer Logo](assets/applogo.png)
+<img src="assets/applogo.png" alt="App Logo" width="100"/>
 
 # Identifyer - Face Recognition Attendance System
 
@@ -145,7 +145,7 @@ SUPABASE_URL=https://<your-supabase-url>.supabase.co
 SUPABASE_KEY=<your-supabase-key>
 WEBSOCKET_URL=ws://<your-websocket-ip>:8765
 ```
-![Example .env File](assets/screenshots/env-file.png)
+<img src="assets/screenshots/env-file.png" alt="Env File"/>
 
 ---
 
@@ -164,32 +164,33 @@ flutter run
 - Overview of session activities, attendance data, and quick access to management tools.
 
 ### Admin Sessions
-![Admin Sessions](assets/screenshots/admin-sessions.jpg)
+<img src="assets/screenshots/admin-sessions.jpg" alt="Admin Sessions" width="300"/>
 - View, manage, and export session records.
 
 ### Admin Students
-![Admin Students](assets/screenshots/admin-students.jpg)
+<img src="assets/screenshots/admin-students.jpg" alt="Admin Students" width="300"/>
 - Manage student data including adding, updating, or removing students.
 
 ### Admin Teachers
-![Admin Teachers](assets/screenshots/admin-teachers.jpg)
+<img src="assets/screenshots/admin-teachers.jpg" alt="Admin Teachers" width="300"/>
 - Manage teacher accounts and assign class sessions.
 
 ### Teacher Dashboard
-![Teacher Dashboard](assets/screenshots/teacher-dashboard.jpg)
+<img src="assets/screenshots/teacher-dashboard.jpg" alt="Teacher Dashboard" width="300"/>
 - Teachers can start new sessions and track attendance in real time.
 
 ### Teacher Sessions
-![Teacher Sessions](assets/screenshots/teacher-sessions.jpg)
+<img src="assets/screenshots/teacher-sessions.jpg" alt="Teacher Sessions" width="300"/>
 - Review attendance data from past sessions.
 
 ### Login Page
-![Login Page](assets/screenshots/login.jpg)
+<img src="assets/screenshots/login.jpg" alt="Login Page" width="300"/>
 - Secure login for both admins and teachers.
 
 ### Home Page
-![Home Page](assets/screenshots/home.jpg)
+<img src="assets/screenshots/home.jpg" alt="Home Page" width="300"/>
 - Overview of the app with quick navigation to various sections.
+
 
 ---
 
