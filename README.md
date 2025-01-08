@@ -1,3 +1,5 @@
+# ![Identifyer Logo](assets/applogo.png)
+
 # Identifyer - Face Recognition Attendance System
 
 Identifyer is a comprehensive facial recognition-based attendance system designed to streamline and automate attendance tracking in educational institutions. By utilizing real-time facial recognition technology, Identifyer enhances accuracy, reduces administrative tasks, and securely manages attendance data through Supabase.
@@ -143,6 +145,7 @@ SUPABASE_URL=https://<your-supabase-url>.supabase.co
 SUPABASE_KEY=<your-supabase-key>
 WEBSOCKET_URL=ws://<your-websocket-ip>:8765
 ```
+![Example .env File](assets/screenshots/env-file.png)
 
 ---
 
@@ -155,17 +158,45 @@ flutter run
 
 ---
 
+## Page Previews
+### Admin Dashboard
+![Admin Dashboard](assets/screenshots/admin-dashboard.jpg)
+- Overview of session activities, attendance data, and quick access to management tools.
+
+### Admin Sessions
+![Admin Sessions](assets/screenshots/admin-sessions.jpg)
+- View, manage, and export session records.
+
+### Admin Students
+![Admin Students](assets/screenshots/admin-students.jpg)
+- Manage student data including adding, updating, or removing students.
+
+### Admin Teachers
+![Admin Teachers](assets/screenshots/admin-teachers.jpg)
+- Manage teacher accounts and assign class sessions.
+
+### Teacher Dashboard
+![Teacher Dashboard](assets/screenshots/teacher-dashboard.jpg)
+- Teachers can start new sessions and track attendance in real time.
+
+### Teacher Sessions
+![Teacher Sessions](assets/screenshots/teacher-sessions.jpg)
+- Review attendance data from past sessions.
+
+### Login Page
+![Login Page](assets/screenshots/login.jpg)
+- Secure login for both admins and teachers.
+
+### Home Page
+![Home Page](assets/screenshots/home.jpg)
+- Overview of the app with quick navigation to various sections.
+
+---
+
 ## Security and Best Practices
 - **Environment Variables:** Store sensitive keys and URLs in a `.env` file.
 - **Supabase Access Control:** Implement role-based access control to limit bucket access.
 - **Data Encryption:** Ensure all data in Supabase is encrypted both at rest and in transit.
-
----
-
-## Troubleshooting
-- **Connection Issues:** Ensure WebSocket IP is correctly set in Flutter and matches the server.
-- **Supabase Errors:** Verify the bucket names match (`studentinformation` and `sessions`).
-- **Embedding Failures:** Confirm DeepFace is installed and running properly on the WebSocket server.
 
 ---
 
