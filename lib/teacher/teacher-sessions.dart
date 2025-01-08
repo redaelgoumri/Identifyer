@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:identifyer/teacher/teacher-navigation.dart';
 import 'package:identifyer/teacher/teacher-session-scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

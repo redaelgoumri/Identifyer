@@ -22,3 +22,5 @@
 #Reports
 *.docx
 *.pdf
+
+.env
