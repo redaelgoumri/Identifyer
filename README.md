@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Identifyer - Face Recognition Attendance System
 
 ## Project Overview
