@@ -160,7 +160,7 @@ flutter run
 
 ## Page Previews
 ### Admin Dashboard
-<img src="assets/screenshots/admin-dashboard.jpg" alt="Admin Dashboard" width="600"/>
+<img src="assets/screenshots/admin-dashboard.jpg" alt="Admin Dashboard" width="300"/>
 - Overview of session activities, attendance data, and quick access to management tools.
 
 ### Admin Sessions
