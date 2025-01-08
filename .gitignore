@@ -18,3 +18,7 @@
 *.DS_Store
 *.log
 *.tmp
+
+#Reports
+*.docx
+*.pdf
