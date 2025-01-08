@@ -1,0 +1,6 @@
+id,first_name,last_name,email,module,passkey,created_at
+550e8400-e29b-41d4-a716-446655440100,Michael,Scott,michael.scott@example.com,Mathematics,pass123,2023-01-01 08:00:00
+550e8400-e29b-41d4-a716-446655440101,Pam,Beesly,pam.beesly@example.com,Physics,pass456,2023-01-01 08:00:00
+550e8400-e29b-41d4-a716-446655440102,Dwight,Schrute,dwight.schrute@example.com,Chemistry,pass789,2023-01-01 08:00:00
+550e8400-e29b-41d4-a716-446655440103,Angela,Martin,angela.martin@example.com,Biology,pass101,2023-01-01 08:00:00
+550e8400-e29b-41d4-a716-446655440104,Kevin,Malone,kevin.malone@example.com,Computer Science,pass112,2023-01-01 08:00:00

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Identifyer - Face Recognition Attendance System
 
 ## Project Overview
@@ -159,3 +160,21 @@ Holds authentication details for teachers and admins. This table manages login, 
 ## Conclusion
 Identifyer leverages cutting-edge technology to simplify and enhance attendance tracking. The integration of Supabase for storage and WebSocket for real-time communication ensures a responsive and secure platform for educational institutions.
 
+=======
+# identifyer
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+>>>>>>> d600812 (Fix line endings and embedded git)
