@@ -1,160 +1,161 @@
 # Identifyer - Face Recognition Attendance System
 
 ## Project Overview
-Identifyer is a mobile application designed to automate attendance tracking in educational institutions using real-time facial recognition. Built with Flutter for the frontend and Python for the backend, Identifyer leverages WebSockets for seamless communication and Supabase for authentication and database management. The app aims to streamline administrative tasks, improve accuracy, and provide real-time data insights for teachers and administrators.
+Identifyer is a mobile application developed to automate attendance tracking in educational institutions using real-time facial recognition technology. This system eliminates the need for manual roll calls, enhances accuracy, and provides a streamlined attendance solution through an intuitive mobile interface. Built using Flutter for the frontend and Python for the backend, Identifyer leverages WebSockets for efficient real-time communication and Supabase for database management and authentication.
 
 ---
 
 ## Project Goals
-- **Automate attendance** using facial recognition technology.
-- **Enhance accuracy** and minimize manual entry errors.
-- **Improve efficiency** by reducing the time taken for roll calls.
-- **Enable real-time tracking** and reporting of attendance.
-- **Simplify system access** through an intuitive mobile interface.
-- **Store data securely** in Supabase, with backup and export options.
+- **Automate attendance** using advanced facial recognition.
+- **Reduce administrative workload** by eliminating manual roll calls.
+- **Ensure accurate attendance records** through real-time data collection.
+- **Enable real-time monitoring** of attendance data by teachers and administrators.
+- **Secure data storage** and provide easy data retrieval and export functionalities.
+- **Provide seamless user experience** through an intuitive mobile interface.
 
 ---
 
 ## Key Technologies
 - **Frontend:** Flutter (Dart)
 - **Backend:** Python (WebSocket Server, DeepFace for facial recognition)
-- **Database:** Supabase (PostgreSQL, Supabase Storage for media files)
+- **Database:** Supabase (PostgreSQL)
+- **Storage Buckets:** Supabase Storage (for student images and session exports)
 - **Face Detection:** Google ML Kit (on-device)
-- **WebSocket Communication:** Real-time data transfer between app and server
+- **WebSocket Communication:** Real-time data exchange between the app and the server
 
 ---
 
 ## System Architecture
 ### Core Components
 1. **Flutter Frontend:**
-   - Handles user interactions (teacher/admin views).
-   - Captures and sends images periodically to the WebSocket server.
-   - Displays real-time attendance data and session management features.
+   - Manages the UI and user interactions.
+   - Captures images periodically and sends them to the WebSocket server.
+   - Displays real-time attendance status.
+   - Allows teachers to manage sessions and export attendance reports.
 
 2. **Python WebSocket Server:**
-   - Receives images from the app.
-   - Runs facial recognition using DeepFace.
-   - Compares detected faces with stored embeddings to mark attendance.
+   - Receives image data from the frontend.
+   - Uses DeepFace to analyze and recognize faces.
+   - Compares incoming face data with stored embeddings.
+   - Sends back real-time recognition results.
 
 3. **Supabase Database:**
-   - Manages user authentication and role-based access.
-   - Stores attendance records and session details.
-   - Uploads and stores student photos for embedding.
+   - Stores all user, student, session, and attendance data.
+   - Provides authentication services for secure login.
+   - Enables role-based access to ensure data security.
 
-4. **Real-time Communication:**
-   - WebSocket ensures low-latency data exchange between the mobile app and backend.
+4. **Supabase Storage Buckets:**
+   - **studentinformation:** Stores student images used for facial recognition and profile records.
+   - **sessions:** Stores exported Excel files generated at the end of each session containing attendance data.
 
----
-
-## User Roles
-1. **Admin:**
-   - Manage teacher and student records.
-   - Oversee attendance records and sessions.
-   - Handle user permissions and roles.
-
-2. **Teacher:**
-   - Start and manage attendance sessions.
-   - View real-time attendance data.
-   - Export attendance reports.
-
-3. **Student:**
-   - Identified through facial recognition.
-   - Attendance is recorded automatically.
+5. **Real-time Communication:**
+   - WebSocket facilitates instant communication between the frontend and backend.
+   - Data flows bi-directionally, enabling low-latency attendance marking.
 
 ---
 
-## Application Workflow
-### Login Process
-- Unified login for both admins and teachers.
-- Admins are redirected to the admin dashboard.
-- Teachers proceed to session creation and management.
+## Database Schema Breakdown
 
-### Session Management
-- Teachers create sessions specifying **year**, **specialty**, and **group**.
-- WebSocket initializes a connection with session data.
-- The app captures images periodically and sends them to the backend.
+### 1. **Students Table**  
+**Purpose:**  
+Stores core student information and facial recognition embeddings used to verify identities during sessions. This table plays a central role in facial recognition and attendance tracking.  
 
-### Real-time Face Recognition
-- The backend processes images, extracts embeddings, and compares them to stored student embeddings.
-- Attendance records are updated instantly in Supabase.
+**Columns:**  
+- **id (uuid):** Unique identifier for each student.  
+- **first_name (text):** Student’s first name.  
+- **last_name (text):** Student’s last name.  
+- **year (int2):** Academic year (e.g., 1, 2, 3).  
+- **specialty (text):** Student’s field of study.  
+- **group (text):** Class or group designation.  
+- **email (text):** Student’s email address.  
+- **phone (text):** Student’s contact number.  
+- **embeddings (jsonb):** Facial embeddings stored in JSON format for facial recognition.  
+- **created_at (timestamp):** Record creation date.  
+- **isMale (bool):** Gender indicator (true/false).  
 
-### Data Export and Reports
-- Admins and teachers can export attendance records to Excel.
-- Data is securely stored and retrievable from Supabase Storage.
-
----
-
-## UML Diagrams
-### Use Case Diagram
-```plaintext
-+------------------+           +---------------+
-|   Admin          |           |   Teacher     |
-+------------------+           +---------------+
-| - Manage Users   |           | - Start Session|
-| - View Reports   |           | - Track Atten. |
-| - Manage Classes |           | - Export Data  |
-+------------------+           +---------------+
-                |                         |
-                +-------------------------+
-                                |
-                           +---------+
-                           | Student |
-                           +---------+
-                           | - Attend|
-                           +---------+
-```
-
-### Class Diagram
-```plaintext
-+------------------+       +------------------+
-|    User          |       |     Session      |
-+------------------+       +------------------+
-| - id             |       | - sessionId      |
-| - name           |       | - year           |
-| - role           |       | - specialty      |
-| - email          |       | - group          |
-+------------------+       +------------------+
-            |                     |
-            +---------------------+
-                          |
-                    +---------+
-                    |   Att.  |
-                    +---------+
-```
+**Storage Integration:**  
+- **Supabase Bucket:** `studentinformation` - Stores student profile images used for embedding generation.
 
 ---
 
-## Gantt Chart
+### 2. **Attendance Table**  
+**Purpose:**  
+Logs attendance records for each session, providing a historical trail of student participation.  
 
-```plaintext
-+----------------------------+---------------+----------------+----------------+
-|        Task                |  Start Date   |   End Date     |    Duration    |
-+----------------------------+---------------+----------------+----------------+
-| Project Initialization     |  Jan 1, 2025  |  Jan 15, 2025  |     15 Days    |
-| Frontend Development       |  Jan 16, 2025 |  Feb 15, 2025  |     30 Days    |
-| Backend Development        |  Feb 16, 2025 |  Mar 20, 2025  |     33 Days    |
-| WebSocket Integration      |  Mar 21, 2025 |  Apr 10, 2025  |     20 Days    |
-| Testing & Debugging        |  Apr 11, 2025 |  May 10, 2025  |     30 Days    |
-| Deployment & Review        |  May 11, 2025 |  May 30, 2025  |     19 Days    |
-+----------------------------+---------------+----------------+----------------+
-```
+**Columns:**  
+- **id (uuid):** Unique identifier for each attendance record.  
+- **student_id (uuid):** Links to the `Students` table.  
+- **session_id (uuid):** Links to the `Sessions` table.  
+- **timestamp (timestamp):** Marks the attendance time.  
+- **status (text):** Records attendance status (`present`, `late`, `absent`).  
+- **created_at (timestamp):** Attendance record creation date.  
 
----
-
-## Next Steps
-1. **Resolve ML Kit Plugin Issues** for local face detection.
-2. **Implement Multi-Instance WebSocket Mapping** to manage multiple teacher sessions simultaneously.
-3. **Optimize Image Capture** to transmit only when faces are detected.
+**Storage Integration:**  
+- **Supabase Bucket:** `sessions` - Stores attendance logs exported at the end of sessions.
 
 ---
 
-## Security Considerations
-- **Role-Based Access Control** (RBAC) ensures sensitive operations are restricted.
-- **Data Encryption** during communication.
-- **Supabase Authentication** ensures secure access to resources.
+### 3. **Sessions Table**  
+**Purpose:**  
+Defines and manages classroom or event sessions. This table governs session duration, participating groups, and responsible teachers.  
+
+**Columns:**  
+- **id (uuid):** Unique identifier for each session.  
+- **year (text):** Academic year.  
+- **specialty (text):** Associated field of study.  
+- **group (text):** Designated class group.  
+- **start_time (timestamp):** Session start time.  
+- **end_time (timestamp):** Session end time.  
+- **created_at (timestamp):** Session creation date.  
+- **status (text):** Session status (`active`, `completed`).  
+- **teacher (uuid):** Links to the `User` table to designate the responsible teacher.  
+
+**Storage Integration:**  
+- **Supabase Bucket:** `sessions` - Stores Excel reports containing final session summaries.
+
+---
+
+### 4. **User Table**  
+**Purpose:**  
+Holds authentication details for teachers and admins. This table manages login, permissions, and user profiles.  
+
+**Columns:**  
+- **id (uuid):** Unique identifier for each user.  
+- **first_name (text):** User’s first name.  
+- **last_name (text):** User’s last name.  
+- **module (text):** Course or module the user manages.  
+- **email (text):** User’s email for authentication.  
+- **passkey (text):** Hashed password for security.  
+- **created_at (timestamp):** Record creation date.  
+
+**Storage Integration:**  
+- **Supabase Bucket:** `user-profiles` - Contains profile pictures for teachers and admins.
+
+---
+
+## Workflow
+1. **Student Enrollment:**
+   - Admins create a new student by entering personal details and selecting the appropriate class.
+   - A photo is uploaded and sent to the embeddings WebSocket to generate facial embeddings.
+   - The photo is uploaded to the `studentinformation` bucket.
+   - The student record, including embeddings, is saved in the database.
+2. **Session Creation:**
+   - Teachers create sessions and specify relevant class groups.
+3. **Attendance Marking:**
+   - The app sends real-time face data to the WebSocket server.
+   - Matches are logged in the `Attendance` table.
+4. **Report Generation:**
+   - Upon session completion, Excel files are stored in the `sessions` bucket.
+
+---
+
+## Security
+- **Supabase Buckets:** Role-based access control (RBAC) to ensure sensitive data is restricted.
+- **Encryption:** Passkeys are encrypted.
+- **Audits:** `created_at` timestamps track data changes.
 
 ---
 
 ## Conclusion
-Identifyer represents a scalable and efficient solution for attendance tracking in educational institutions. By integrating modern technologies like facial recognition and real-time data synchronization, the system significantly reduces administrative overhead, improves accuracy, and enhances the overall educational experience.
+Identifyer leverages cutting-edge technology to simplify and enhance attendance tracking. The integration of Supabase for storage and WebSocket for real-time communication ensures a responsive and secure platform for educational institutions.
 
